@@ -1,0 +1,103 @@
+---
+// ProjectModal — lightbox for all project details
+import { projects } from '../../data/projects';
+---
+
+{projects.map((project) => (
+  <div
+    class="modal-overlay"
+    id={`modal-${project.slug}`}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby={`modal-title-${project.slug}`}
+    onclick="if(event.target===this)this.classList.remove('open')"
+  >
+    <div
+      class="relative w-full max-w-2xl mx-4 rounded-xl overflow-hidden shadow-xl"
+      style="background-color: var(--color-background-light); max-height: 90vh; overflow-y: auto;"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Image -->
+      <div class="w-full aspect-video relative bg-stone-200 dark:bg-stone-800">
+        <img
+          src={project.cover}
+          alt={project.alt}
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <!-- Optional gradient overlay if text readability was needed, but here it's just decorative -->
+      </div>
+
+      <!-- Content -->
+      <div class="p-8 space-y-5">
+        <!-- Close button -->
+        <button
+          class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg transition-all hover:scale-110 z-10"
+          style="background-color: color-mix(in srgb, var(--color-primary-contrast) 90%, transparent); color: var(--color-primary);"
+          onclick={`document.getElementById('modal-${project.slug}')?.classList.remove('open')`}
+          aria-label="Close modal"
+        >
+          ✕
+        </button>
+
+        <!-- Type badge -->
+        <span
+          class="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full font-display"
+          style="background-color: var(--color-primary); color: var(--color-primary-contrast);"
+        >
+          {project.type}
+        </span>
+
+        <!-- Title -->
+        <h2
+          class="font-display font-black uppercase text-stone-900 leading-tight"
+          id={`modal-title-${project.slug}`}
+          style="font-size: clamp(1.5rem, 3vw, 2rem);"
+        >
+          {project.name}
+        </h2>
+
+        <!-- Meta -->
+        <dl class="grid grid-cols-2 gap-4">
+          <div class="bg-stone-100 rounded p-3">
+            <dt class="font-display font-black text-[10px] uppercase tracking-widest text-primary mb-1">Location</dt>
+            <dd class="font-sans text-sm text-stone-800">{project.location}</dd>
+          </div>
+          <div class="bg-stone-100 rounded p-3">
+            <dt class="font-display font-black text-[10px] uppercase tracking-widest text-primary mb-1">Type</dt>
+            <dd class="font-sans text-sm text-stone-800">{project.type}</dd>
+          </div>
+          {project.sqft && (
+            <div class="bg-stone-100 rounded p-3">
+              <dt class="font-display font-black text-[10px] uppercase tracking-widest text-primary mb-1">Area</dt>
+              <dd class="font-sans text-sm text-stone-800">{project.sqft.toLocaleString()} sq.ft.</dd>
+            </div>
+          )}
+        </dl>
+
+        <!-- Description -->
+        {project.description && (
+          <p class="font-sans text-stone-600 leading-relaxed text-sm">{project.description}</p>
+        )}
+
+        <!-- CTA -->
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-primary-contrast px-7 py-3 rounded font-bold uppercase tracking-widest text-sm transition-all duration-200 w-full justify-center mt-2"
+        >
+          Enquire About This Project
+        </a>
+      </div>
+    </div>
+  </div>
+))}
+
+<script>
+  // Close modals on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach((m) => m.classList.remove('open'));
+    }
+  });
+</script>

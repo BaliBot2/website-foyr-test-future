@@ -1,0 +1,94 @@
+---
+import Input from '../shared/Input.astro';
+import Textarea from '../shared/Textarea.astro';
+import Select from '../shared/Select.astro';
+import Icon from '../shared/Icon.astro';
+
+const projectTypes = [
+  { value: 'residential', label: 'Residential' },
+  { value: 'commercial', label: 'Commercial' },
+  { value: 'farmhouse', label: 'Farmhouse' },
+  { value: 'apartment', label: 'Apartment' },
+  { value: 'duplex', label: 'Duplex' },
+  { value: 'other', label: 'Other / Not Sure' },
+];
+---
+
+<div class="bg-white dark:bg-stone-900 p-8 md:p-12 rounded-xl shadow-sm border border-stone-200 dark:border-stone-800">
+  <!-- Header -->
+  <div class="mb-8">
+    <h2 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 text-2xl mb-2">
+      Let's Start a Conversation
+    </h2>
+    <p class="font-sans text-stone-500 dark:text-stone-400 text-sm">
+      Fill in your details and we'll get back to you within 24 hours.
+    </p>
+  </div>
+
+  <form
+    id="contact-form"
+    action="#"
+    class="space-y-6"
+    method="POST"
+    novalidate
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Input
+        label="Full Name"
+        name="name"
+        id="field-name"
+        placeholder="e.g. Rahul Sharma"
+        required
+      />
+      <Input
+        label="Phone Number"
+        name="phone"
+        id="field-phone"
+        type="tel"
+        placeholder="e.g. 9876543210"
+        required
+      />
+    </div>
+
+    <Input
+      label="Email Address"
+      name="email"
+      id="field-email"
+      type="email"
+      placeholder="you@example.com"
+      required
+    />
+
+    <Select
+      label="Project Type"
+      name="projectType"
+      id="field-project-type"
+      options={projectTypes}
+    />
+
+    <Textarea
+      label="Tell Us About Your Project"
+      name="message"
+      id="field-message"
+      placeholder="Share your project location, approximate size, budget range, and any specific requirements..."
+      rows={6}
+      required
+    />
+
+    <!-- Submit button -->
+    <button
+      type="submit"
+      id="contact-submit"
+      class="w-full flex items-center justify-center gap-3 group px-10 py-4 rounded font-bold uppercase tracking-widest text-sm transition-all duration-200 hover:scale-[1.02]"
+      style="background-color: var(--color-primary); color: var(--color-primary-contrast);"
+    >
+      Request a Free Consultation
+      <Icon name="send" size={18} class="transition-transform group-hover:translate-x-1" />
+    </button>
+
+    <!-- Note -->
+    <p class="font-sans text-xs text-stone-400 text-center">
+      We typically respond within 24 hours. Your information is never shared.
+    </p>
+  </form>
+</div>

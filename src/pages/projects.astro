@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/home/Navbar.astro';
+import Footer from '../components/shared/Footer.astro';
+import ProjectFilters from '../components/projects/ProjectFilters.astro';
+import ProjectGrid from '../components/projects/ProjectGrid.astro';
+import ProjectModal from '../components/projects/ProjectModal.astro';
+---
+
+<Layout
+  title="Portfolio | Design Sense — 150+ Architecture & Interior Design Projects, Delhi NCR"
+  description="Browse Design Sense's portfolio of 150+ projects — residential, commercial, farmhouse, apartments, and duplex designs across Delhi & NCR by Ar. Anchal Garg."
+>
+  <Navbar />
+  <main>
+    <!-- Header -->
+    <section class="pt-32 pb-12 bg-background-light dark:bg-background-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-px w-12 bg-primary" />
+          <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary font-display">Our Work</span>
+        </div>
+        <h1 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 leading-tight mb-3" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+          Project Portfolio
+        </h1>
+        <p class="font-sans text-stone-600 dark:text-stone-400 max-w-xl">
+          150+ delivered projects across Delhi & NCR — filter by type to explore.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filters + Grid -->
+    <section class="pb-24 bg-background-light dark:bg-background-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <ProjectFilters />
+        <ProjectGrid />
+      </div>
+    </section>
+
+    <!-- CTA band -->
+    <section class="py-20" style="background-color: var(--color-primary);">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="font-display font-black uppercase leading-tight mb-4" style="color: var(--color-primary-contrast); font-size: clamp(1.8rem, 4vw, 3rem);">
+          Don't See What You're Looking For?
+        </h2>
+        <p class="font-sans mb-8" style="color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent);">
+          We have delivered many more projects not shown here. Reach out to discuss your specific requirements.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 font-bold uppercase tracking-widest rounded px-8 py-4 text-sm transition-all duration-200 hover:scale-105"
+          style="background-color: var(--color-primary-contrast); color: var(--color-primary);"
+        >
+          Start Your Project
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <!-- Modals (rendered outside main flow) -->
+  <ProjectModal />
+</Layout>

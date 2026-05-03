@@ -1,0 +1,77 @@
+---
+// Achievements — About § 3: 3-col photo grid with real achievement photos
+
+const achievements = [
+  {
+    id: 'design-award',
+    title: 'Industry Recognition',
+    caption: 'Design Award Recipient — Architecture & Interiors',
+    imgSrc: '/images/about/achievements.jpg',
+    imgAlt: 'Ar. Anchal Garg receiving a design award',
+    // The left portion of module_04 — award ceremony photo
+    objectPosition: 'left center',
+  },
+  {
+    id: 'colston-collab',
+    title: 'Brand Collaboration',
+    caption: 'Behind-the-shoot with @colston_bathrooms × @designsense.architects',
+    imgSrc: '/images/about/achievements.jpg',
+    imgAlt: 'Colston Bathrooms collaboration shoot with Design Sense',
+    objectPosition: 'center center',
+  },
+  {
+    id: 'ace-jury',
+    title: 'Jury Member',
+    caption: 'ACE Architecture Awards — Jury Panel Member',
+    imgSrc: '/images/about/achievements.jpg',
+    imgAlt: 'Ar. Anchal Garg as jury member at ACE Architecture Awards',
+    objectPosition: 'right center',
+  },
+];
+---
+
+<section id="achievements" class="py-24 bg-background-light dark:bg-background-dark">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <div class="flex items-center gap-4 justify-center mb-4">
+        <div class="h-px w-12 bg-primary" />
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary font-display">Recognition</span>
+        <div class="h-px w-12 bg-primary" />
+      </div>
+      <h2 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 leading-tight" style="font-size: clamp(2rem, 4vw, 3rem);">
+        Achievements &amp; Milestones
+      </h2>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {achievements.map(({ id, title, caption, imgSrc, imgAlt, objectPosition }) => (
+        <figure class="group" id={`achievement-${id}`}>
+          <!-- Image -->
+          <div class="relative rounded-lg overflow-hidden aspect-square mb-4 bg-stone-200 dark:bg-stone-800">
+            <img
+              src={imgSrc}
+              alt={imgAlt}
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              style={`object-position: ${objectPosition};`}
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Hover overlay -->
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5"
+              style="background: linear-gradient(to top, rgba(26,16,8,0.7) 0%, transparent 60%);"
+            />
+          </div>
+          <!-- Caption -->
+          <figcaption class="space-y-1">
+            <p class="font-display font-black text-sm uppercase tracking-wide text-stone-900 dark:text-stone-100">{title}</p>
+            <p class="font-sans text-sm text-stone-600 dark:text-stone-400">{caption}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

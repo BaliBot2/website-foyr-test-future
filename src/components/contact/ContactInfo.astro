@@ -1,0 +1,108 @@
+---
+import Icon from '../shared/Icon.astro';
+
+const contacts = [
+  {
+    label: 'Phone (Primary)',
+    value: '9899473055',
+    href: 'tel:9899473055',
+    icon: 'phone',
+    display: '+91 98994 73055',
+  },
+  {
+    label: 'Phone (Alternate)',
+    value: '9999430067',
+    href: 'tel:9999430067',
+    icon: 'phone',
+    display: '+91 99994 30067',
+  },
+  {
+    label: 'Email',
+    value: 'designsenseoffice@gmail.com',
+    href: 'mailto:designsenseoffice@gmail.com',
+    icon: 'mail',
+    display: 'designsenseoffice@gmail.com',
+  },
+  {
+    label: 'Website',
+    value: 'www.designsensearchitects.com',
+    href: 'https://www.designsensearchitects.com',
+    icon: 'world',
+    display: 'designsensearchitects.com',
+  },
+  {
+    label: 'Instagram',
+    value: '@designsense.architects',
+    href: 'https://www.instagram.com/designsense.architects',
+    icon: 'brand-instagram',
+    display: '@designsense.architects',
+  },
+  {
+    label: 'WhatsApp',
+    value: 'Chat on WhatsApp',
+    href: 'https://wa.me/919899473055',
+    icon: 'brand-whatsapp',
+    display: 'Chat on WhatsApp',
+  },
+  {
+    label: 'Service Area',
+    value: 'Delhi & NCR',
+    href: undefined,
+    icon: 'map-pin',
+    display: 'Delhi & NCR',
+  },
+];
+---
+
+<div class="space-y-6">
+  <!-- Header -->
+  <div>
+    <h2 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 text-2xl mb-2">
+      Contact Details
+    </h2>
+    <p class="font-sans text-stone-500 dark:text-stone-400 text-sm">
+      Reach us directly — we're always available to discuss your project.
+    </p>
+  </div>
+
+  <!-- Contact items -->
+  <div class="space-y-3">
+    {contacts.map(({ label, href, icon, display }) => {
+      const Tag = href ? 'a' : 'div';
+      const props = href
+        ? { href, target: href.startsWith('http') ? '_blank' : undefined, rel: href.startsWith('http') ? 'noopener noreferrer' : undefined }
+        : {};
+      return (
+        <Tag
+          {...props}
+          class:list={[
+            'flex items-center gap-4 p-4 rounded-lg border transition-all duration-200',
+            href
+              ? 'hover:border-primary hover:bg-primary/5 cursor-pointer'
+              : 'cursor-default',
+            'border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900'
+          ]}
+        >
+          <div
+            class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+            style="background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);"
+          >
+            <Icon name={icon} size={18} class="text-primary" />
+          </div>
+          <div>
+            <p class="font-display font-black text-[10px] uppercase tracking-widest text-primary mb-0.5">{label}</p>
+            <p class="font-sans text-sm text-stone-800 dark:text-stone-200 font-medium">{display}</p>
+          </div>
+        </Tag>
+      );
+    })}
+  </div>
+
+  <!-- Office address note -->
+  <div
+    class="p-4 rounded-lg border-l-4 text-xs font-sans text-stone-500 dark:text-stone-400 italic"
+    style="border-color: var(--color-primary); background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);"
+  >
+    📍 Physical office address to be confirmed by client — currently serving all of Delhi & NCR.
+  </div>
+</div>

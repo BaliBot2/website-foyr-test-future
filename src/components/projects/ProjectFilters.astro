@@ -1,0 +1,62 @@
+---
+// ProjectFilters — filter pills: All + 5 types
+import { projectTypes } from '../../data/projects';
+---
+
+<div id="project-filters" class="mb-10 flex flex-wrap gap-3">
+  <button
+    class="filter-pill active font-display font-black text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border-2 transition-all duration-200"
+    style="border-color: var(--color-primary);"
+    data-filter="all"
+    aria-label="Show all projects"
+    aria-pressed="true"
+  >
+    All
+  </button>
+  {projectTypes.map((type) => (
+    <button
+      class="filter-pill font-display font-black text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border-2 transition-all duration-200 text-stone-600 dark:text-stone-400 border-stone-300 dark:border-stone-700 hover:border-primary hover:text-primary"
+      data-filter={type.toLowerCase()}
+      aria-label={`Filter by ${type}`}
+      aria-pressed="false"
+    >
+      {type}
+    </button>
+  ))}
+</div>
+
+<script>
+  const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+  const cards = document.querySelectorAll<HTMLElement>('[data-project-type]');
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const filter = pill.dataset.filter ?? 'all';
+
+      // Update pill states
+      pills.forEach((p) => {
+        const isActive = p.dataset.filter === filter;
+        p.classList.toggle('active', isActive);
+        p.style.borderColor = isActive ? 'var(--color-primary)' : '';
+        p.style.color = isActive ? 'var(--color-primary-contrast)' : '';
+        p.style.backgroundColor = isActive ? 'var(--color-primary)' : '';
+        p.setAttribute('aria-pressed', String(isActive));
+      });
+
+      // Show/hide cards
+      cards.forEach((card) => {
+        const cardType = (card.dataset.projectType ?? '').toLowerCase();
+        const shouldShow = filter === 'all' || cardType === filter;
+        card.style.display = shouldShow ? '' : 'none';
+        card.style.animation = shouldShow ? 'fadeInUp 0.3s ease' : '';
+      });
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

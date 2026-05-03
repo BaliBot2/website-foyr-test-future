@@ -1,0 +1,66 @@
+---
+// ValueProp.astro — Full-width rust band: "Saving Client's Money, Time & Stress"
+---
+
+<section
+  id="value-prop"
+  class="relative py-20 overflow-hidden"
+  style="background-color: var(--color-primary);"
+>
+  <!-- Subtle diagonal lines texture -->
+  <div
+    class="absolute inset-0 opacity-[0.07] pointer-events-none"
+    style="background-image: repeating-linear-gradient(45deg, var(--color-primary-contrast) 0, var(--color-primary-contrast) 1px, transparent 0, transparent 50%); background-size: 20px 20px;"
+  />
+
+  <div class="relative max-w-7xl mx-auto px-6 text-center">
+    <!-- Eyebrow -->
+    <p
+      class="font-sans text-xs uppercase tracking-[0.4em] font-semibold mb-6"
+      style="color: color-mix(in srgb, var(--color-primary-contrast) 60%, transparent);"
+    >
+      Our Promise to You
+    </p>
+
+    <!-- Main statement -->
+    <h2
+      class="font-display font-black uppercase leading-none tracking-tight"
+      style="color: var(--color-primary-contrast); font-size: clamp(2rem, 6vw, 5rem);"
+    >
+      Saving Client's<br />
+      <span style="color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent);">Money, Time &amp; Stress</span>
+    </h2>
+
+    <!-- Divider -->
+    <div class="flex items-center justify-center gap-4 my-8">
+      <div class="h-px w-16" style="background-color: color-mix(in srgb, var(--color-primary-contrast) 30%, transparent);" />
+      <div class="w-2 h-2 rounded-full" style="background-color: var(--color-primary-contrast);" />
+      <div class="h-px w-16" style="background-color: color-mix(in srgb, var(--color-primary-contrast) 30%, transparent);" />
+    </div>
+
+    <!-- Supporting line -->
+    <p
+      class="font-sans font-light text-lg max-w-xl mx-auto mb-10"
+      style="color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent);"
+    >
+      We Deliver What We Promise — from first concept to finished space.
+    </p>
+
+    <!-- Key pillars -->
+    <div class="flex flex-wrap justify-center gap-4">
+      {[
+        { label: '💰 Cost Efficient', sub: 'Smart procurement & vendor links' },
+        { label: '⏱ Time Bound', sub: 'Strict project timelines' },
+        { label: '🧘 Stress-Free', sub: 'End-to-end management' },
+      ].map(({ label, sub }) => (
+        <div
+          class="text-center px-6 py-4 rounded border"
+          style="border-color: color-mix(in srgb, var(--color-primary-contrast) 20%, transparent); background-color: color-mix(in srgb, var(--color-primary-contrast) 5%, transparent);"
+        >
+          <p class="font-display font-black text-sm uppercase tracking-wide" style="color: var(--color-primary-contrast);">{label}</p>
+          <p class="font-sans text-xs mt-1" style="color: color-mix(in srgb, var(--color-primary-contrast) 55%, transparent);">{sub}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

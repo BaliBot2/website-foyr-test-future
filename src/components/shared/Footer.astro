@@ -1,0 +1,116 @@
+---
+import Container from '../shared/Container.astro';
+import Icon from '../shared/Icon.astro';
+import Logo from '../shared/Logo.astro';
+---
+
+<footer class="border-t border-stone-200 dark:border-stone-800 bg-background-light dark:bg-background-dark py-16">
+  <Container size="xl">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+      <!-- Brand Column -->
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3 mb-5">
+          <Logo size="md" />
+          <div class="flex flex-col leading-none">
+            <span class="font-display font-black text-lg uppercase tracking-tight text-stone-900 dark:text-stone-100">
+              Design Sense
+            </span>
+            <span class="text-[9px] uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400 font-sans">
+              Architecture & Interiors
+            </span>
+          </div>
+        </div>
+        <p class="text-stone-600 dark:text-stone-400 text-sm font-sans leading-relaxed max-w-xs mb-5">
+          Architecture and Interior Design Consultancy based in Delhi &amp; NCR.
+          Delivering spaces that save client's money, time &amp; stress.
+        </p>
+        <!-- BNI Badge -->
+        <div class="inline-flex items-center gap-2 border border-primary/30 bg-primary/5 text-primary px-4 py-2 rounded text-xs font-bold uppercase tracking-widest">
+          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+          Proud BNI Member
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="md:col-span-3">
+        <h2 class="text-stone-900 dark:text-stone-100 text-xs font-bold uppercase tracking-widest mb-6 font-display">Quick Links</h2>
+        <ul class="space-y-3">
+          {[
+            { href: '/', label: 'Home' },
+            { href: '/about', label: 'About Us' },
+            { href: '/services', label: 'Services' },
+            { href: '/projects', label: 'Portfolio' },
+            { href: '/contact', label: 'Contact' },
+          ].map(({ href, label }) => (
+            <li>
+              <a href={href} class="text-stone-600 dark:text-stone-400 hover:text-primary transition-colors text-sm font-sans">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="md:col-span-4">
+        <h2 class="text-stone-900 dark:text-stone-100 text-xs font-bold uppercase tracking-widest mb-6 font-display">Get in Touch</h2>
+        <ul class="space-y-3">
+          <li>
+            <a href="tel:9899473055" class="text-stone-600 dark:text-stone-400 hover:text-primary transition-colors text-sm font-sans flex items-center gap-2">
+              <Icon name="phone" size={15} class="text-primary shrink-0" />
+              9899473055
+            </a>
+          </li>
+          <li>
+            <a href="mailto:designsenseoffice@gmail.com" class="text-stone-600 dark:text-stone-400 hover:text-primary transition-colors text-sm font-sans flex items-center gap-2 break-all">
+              <Icon name="mail" size={15} class="text-primary shrink-0" />
+              designsenseoffice@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://www.designsensearchitects.com" target="_blank" rel="noopener noreferrer" class="text-stone-600 dark:text-stone-400 hover:text-primary transition-colors text-sm font-sans flex items-center gap-2">
+              <Icon name="world" size={15} class="text-primary shrink-0" />
+              designsensearchitects.com
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/designsense.architects" target="_blank" rel="noopener noreferrer" class="text-stone-600 dark:text-stone-400 hover:text-primary transition-colors text-sm font-sans flex items-center gap-2">
+              <Icon name="brand-instagram" size={15} class="text-primary shrink-0" />
+              @designsense.architects
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/919899473055" target="_blank" rel="noopener noreferrer" class="text-stone-600 dark:text-stone-400 hover:text-primary transition-colors text-sm font-sans flex items-center gap-2">
+              <Icon name="brand-whatsapp" size={15} class="text-primary shrink-0" />
+              WhatsApp Us
+            </a>
+          </li>
+          <li class="pt-1">
+            <span class="text-stone-500 dark:text-stone-500 text-sm font-sans flex items-center gap-2">
+              <Icon name="map-pin" size={15} class="text-primary shrink-0" />
+              Delhi &amp; NCR
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-14 pt-8 border-t border-stone-200 dark:border-stone-800 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-stone-500 dark:text-stone-600 text-[10px] uppercase tracking-widest font-medium font-sans">
+        © {new Date().getFullYear()} Design Sense. All Rights Reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="/privacy" class="text-stone-500 dark:text-stone-600 text-[10px] uppercase tracking-widest font-medium hover:text-stone-900 dark:hover:text-stone-100 transition-colors font-sans">
+          Privacy Policy
+        </a>
+        <a href="/terms" class="text-stone-500 dark:text-stone-600 text-[10px] uppercase tracking-widest font-medium hover:text-stone-900 dark:hover:text-stone-100 transition-colors font-sans">
+          Terms
+        </a>
+      </div>
+    </div>
+  </Container>
+</footer>

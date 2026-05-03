@@ -1,0 +1,171 @@
+---
+import Container from '../shared/Container.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/projects', label: 'Portfolio' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="fixed top-0 w-full z-50 bg-stone-50/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-stone-200 dark:border-stone-800">
+  <Container class="h-20 flex items-center justify-between">
+
+    <!-- Logo / Wordmark -->
+    <a href="/" class="flex items-center gap-3 group cursor-pointer" aria-label="Design Sense — Home">
+      <!-- DS Monogram -->
+      <div class="w-9 h-9 rounded-sm bg-primary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+        <span class="text-primary-contrast font-display font-black text-sm leading-none tracking-tighter">DS</span>
+      </div>
+      <div class="flex flex-col leading-none">
+        <span class="font-display text-lg font-black tracking-tight uppercase text-stone-900 dark:text-stone-100 group-hover:text-primary transition-colors duration-200">
+          Design Sense
+        </span>
+        <span class="text-[9px] uppercase tracking-[0.2em] text-stone-500 dark:text-stone-400 font-sans font-medium">
+          Architecture & Interiors
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+      {navLinks.map(({ href, label }) => {
+        const isActive = href === '/'
+          ? currentPath === '/'
+          : currentPath === href || currentPath.startsWith(href + '/');
+        return (
+          <a
+            href={href}
+            class:list={[
+              "text-sm font-semibold tracking-wide transition-colors duration-200 relative py-1",
+              isActive
+                ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary after:rounded-full"
+                : "text-stone-600 dark:text-stone-400 hover:text-primary dark:hover:text-primary"
+            ]}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- CTA + Mobile Toggle -->
+    <div class="flex items-center gap-3">
+      <a
+        href="/contact"
+        id="nav-cta"
+        class="hidden md:inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-primary-contrast px-5 py-2.5 rounded text-sm font-bold uppercase tracking-widest transition-all duration-200 hover:scale-105"
+      >
+        Free Consultation
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden p-2 text-stone-700 dark:text-stone-300 hover:text-primary transition-colors"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </Container>
+</header>
+
+<!-- Mobile Menu Drawer -->
+<div
+  id="mobile-menu"
+  class="mobile-menu pt-20 flex flex-col px-8 py-10 gap-8"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+>
+  <nav class="flex flex-col gap-6" aria-label="Mobile navigation">
+    {navLinks.map(({ href, label }) => {
+      const isActive = href === '/'
+        ? currentPath === '/'
+        : currentPath === href || currentPath.startsWith(href + '/');
+      return (
+        <a
+          href={href}
+          class:list={[
+            "font-display text-3xl font-black uppercase tracking-tight transition-colors duration-200",
+            isActive ? "text-primary" : "text-stone-100 hover:text-primary-contrast"
+          ]}
+        >
+          {label}
+        </a>
+      );
+    })}
+  </nav>
+  <div class="mt-auto pt-8 border-t border-stone-700">
+    <a
+      href="/contact"
+      class="flex items-center justify-center bg-primary text-primary-contrast px-6 py-4 rounded font-bold uppercase tracking-widest text-lg hover:bg-primary-light transition-all"
+    >
+      Free Consultation
+    </a>
+    <p class="text-stone-500 text-sm mt-6 text-center font-sans">
+      📞 <a href="tel:9899473055" class="hover:text-primary-contrast transition-colors">9899473055</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  function openMenu() {
+    menu?.classList.add('open');
+    toggle?.setAttribute('aria-expanded', 'true');
+    iconOpen?.classList.add('hidden');
+    iconClose?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu?.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Close on nav link click
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+
+<style>
+  .after\:absolute::after { content: ''; position: absolute; }
+  .after\:bottom-0::after { bottom: 0; }
+  .after\:left-0::after { left: 0; }
+  .after\:w-full::after { width: 100%; }
+  .after\:h-\[2px\]::after { height: 2px; }
+  .after\:bg-primary::after { background-color: var(--color-primary); }
+  .after\:rounded-full::after { border-radius: 9999px; }
+</style>

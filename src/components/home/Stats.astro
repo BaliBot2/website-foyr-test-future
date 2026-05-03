@@ -1,0 +1,62 @@
+---
+// Stats.astro — 4-col stat grid: 150+ Projects · 5 Years · Pan India · Delhi & NCR
+
+const stats = [
+  {
+    number: '150+',
+    label: 'Projects Delivered',
+    description: 'Across residential, commercial & farmhouse spaces',
+    icon: '🏛',
+  },
+  {
+    number: '5+',
+    label: 'Years of Excellence',
+    description: 'Consistent quality since our founding',
+    icon: '📅',
+  },
+  {
+    number: 'Pan India',
+    label: 'Project Reach',
+    description: 'From Delhi to Rewari and beyond',
+    icon: '🗺',
+  },
+  {
+    number: 'Delhi & NCR',
+    label: 'Primary Service Area',
+    description: 'Our home ground, our expertise',
+    icon: '📍',
+  },
+];
+---
+
+<section id="stats" class="py-20 bg-background-light dark:bg-background-dark border-y border-stone-200 dark:border-stone-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Label -->
+    <div class="flex items-center gap-4 mb-16 justify-center">
+      <div class="h-px w-12 bg-primary" />
+      <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary font-display">By the Numbers</span>
+      <div class="h-px w-12 bg-primary" />
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-stone-200 dark:bg-stone-800 rounded-lg overflow-hidden border border-stone-200 dark:border-stone-800">
+      {stats.map(({ number, label, description, icon }) => (
+        <div class="bg-background-light dark:bg-background-dark p-8 md:p-10 flex flex-col gap-3 group hover:bg-primary/5 transition-colors duration-300">
+          <span class="text-2xl">{icon}</span>
+          <div
+            class="font-display font-black leading-none text-primary"
+            style="font-size: clamp(1.8rem, 4vw, 3.5rem);"
+          >
+            {number}
+          </div>
+          <div class="font-display font-black text-sm uppercase tracking-wide text-stone-900 dark:text-stone-100">
+            {label}
+          </div>
+          <p class="font-sans text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+            {description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

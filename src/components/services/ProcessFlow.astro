@@ -1,0 +1,65 @@
+---
+// ProcessFlow.astro — Reuses 8-step design process for Services page
+
+const steps = [
+  { num: '01', title: "Understanding\nClient's Needs", icon: '👂' },
+  { num: '02', title: 'Smart Space\nPlanning', icon: '📐' },
+  { num: '03', title: 'Interiors Concept\nDevelopment', icon: '💡' },
+  { num: '04', title: 'Realistic 3D\nViews', icon: '🖥' },
+  { num: '05', title: 'Quality Material\nProcurement', icon: '🪨' },
+  { num: '06', title: 'Skilled Labor\nOn-Site', icon: '🔨' },
+  { num: '07', title: 'Customized\nFurniture', icon: '🪑' },
+  { num: '08', title: 'Space\nStyling', icon: '✨' },
+];
+---
+
+<section id="services-process" class="py-24 bg-stone-100 dark:bg-background-dark/60">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="flex items-center gap-4 justify-center mb-6">
+        <div class="h-px w-12 bg-primary" />
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary font-display">How We Work</span>
+        <div class="h-px w-12 bg-primary" />
+      </div>
+      <h2 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 leading-tight" style="font-size: clamp(2rem, 5vw, 3.5rem);">
+        Our 8-Step Process
+      </h2>
+      <p class="font-sans text-stone-600 dark:text-stone-400 mt-4 max-w-xl mx-auto">
+        Every project follows a clear, structured journey — so you always know where you are and what comes next.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 relative">
+      {steps.map(({ num, title, icon }, i) => (
+        <div class="flex flex-col items-center text-center gap-3 group">
+          <div
+            class="w-10 h-10 rounded-full flex items-center justify-center font-display font-black text-sm shrink-0 transition-all duration-300 group-hover:scale-110 border-2"
+            style={i === 0 || i === steps.length - 1
+              ? "background-color: var(--color-primary); color: var(--color-primary-contrast); border-color: var(--color-primary);"
+              : "background-color: var(--color-background-light); color: var(--color-primary); border-color: var(--color-primary);"
+            }
+          >
+            {num}
+          </div>
+          <span class="text-xl">{icon}</span>
+          <p class="font-sans text-xs font-semibold text-stone-700 dark:text-stone-300 leading-tight whitespace-pre-line">
+            {title}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-14">
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-primary-contrast px-8 py-4 rounded font-bold uppercase tracking-widest text-sm transition-all duration-200 hover:scale-105"
+      >
+        Start Your Project Today
+      </a>
+    </div>
+  </div>
+</section>

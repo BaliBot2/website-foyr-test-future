@@ -1,0 +1,77 @@
+---
+// About page — Founder section
+---
+
+<section id="founder" class="pt-32 pb-24 bg-background-light dark:bg-background-dark">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Label -->
+    <div class="flex items-center gap-4 mb-12">
+      <div class="h-px w-12 bg-primary" />
+      <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary font-display">Meet the Founder</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+      <!-- Portrait -->
+      <div class="lg:col-span-4">
+        <div class="relative rounded-lg overflow-hidden aspect-[3/4] max-w-xs mx-auto lg:mx-0 shadow-2xl">
+          <img
+            src="/images/about/anchal-garg-portrait.jpg"
+            alt="Ar. Anchal Garg — Founder, Design Sense Architects"
+            class="absolute inset-0 w-full h-full object-cover object-top"
+            loading="eager"
+            decoding="async"
+          />
+          <!-- Subtle rust overlay strip at bottom -->
+          <div
+            class="absolute bottom-0 left-0 right-0 h-16"
+            style="background: linear-gradient(to top, rgba(139,58,15,0.7) 0%, transparent 100%);"
+          />
+        </div>
+      </div>
+
+      <!-- Credentials -->
+      <div class="lg:col-span-8 space-y-8">
+        <div>
+          <h1 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 leading-tight" style="font-size: clamp(2.5rem, 5vw, 4rem);">
+            Ar. Anchal Garg
+          </h1>
+          <p class="font-sans text-primary font-semibold text-lg mt-2">
+            Founder & Principal Architect
+          </p>
+        </div>
+
+        <p class="font-sans text-stone-600 dark:text-stone-400 text-lg leading-relaxed">
+          A visionary architect and interior designer with over 8 years of hands-on experience, Ar. Anchal Garg has built Design Sense into one of Delhi & NCR's most trusted design consultancies — delivering 150+ projects across residential, commercial, and farmhouse typologies.
+        </p>
+
+        <!-- Credential table -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { label: 'Education', value: 'B.Arch — IP University, Delhi' },
+            { label: 'Experience', value: '8+ Years in Architecture & Interiors' },
+            { label: 'Location', value: 'New Delhi, India' },
+          ].map(({ label, value }) => (
+            <div class="bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded p-4">
+              <p class="font-display font-black text-[10px] uppercase tracking-widest text-primary mb-1">{label}</p>
+              <p class="font-sans text-sm text-stone-800 dark:text-stone-200 font-medium">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Strengths -->
+        <div class="flex flex-wrap gap-3">
+          {['Vastu-Compliant Design', '3D Visualization', 'Site Supervision', 'Client-Centric Approach', 'Budget Management'].map((tag) => (
+            <span
+              class="font-sans text-xs font-semibold uppercase tracking-wide px-4 py-2 rounded-full border"
+              style="border-color: var(--color-primary); color: var(--color-primary); background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

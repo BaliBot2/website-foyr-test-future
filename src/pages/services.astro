@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/home/Navbar.astro';
+import Architecture from '../components/services/Architecture.astro';
+import Interiors from '../components/services/Interiors.astro';
+import Visualization3D from '../components/services/Visualization3D.astro';
+import ProcessFlow from '../components/services/ProcessFlow.astro';
+import Footer from '../components/shared/Footer.astro';
+---
+
+<Layout
+  title="Services | Design Sense — Architecture, Interior Design & 3D Visualization in Delhi NCR"
+  description="Design Sense offers complete architecture drawings, interior design, and photorealistic 3D visualization services in Delhi & NCR. All Vastu-compliant. By Ar. Anchal Garg."
+>
+  <Navbar />
+  <main>
+    <Architecture />
+    <Interiors />
+    <Visualization3D />
+    <ProcessFlow />
+  </main>
+  <Footer />
+</Layout>
