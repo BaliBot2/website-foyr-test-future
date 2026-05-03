@@ -1,0 +1,106 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="future-header">
+  <div class="future-shell future-header__inner">
+    <a href="/" class="future-brand" aria-label="Design Sense home">
+      <span class="future-brand__mark"></span>
+      <span>Design Sense</span>
+    </a>
+
+    <nav class="future-nav" aria-label="Primary navigation">
+      {navLinks.map(({ href, label }) => {
+        const isActive = href === '/'
+          ? currentPath === '/'
+          : currentPath === href || currentPath.startsWith(`${href}/`);
+
+        return (
+          <a href={href} class:list={['future-nav__link', isActive && 'future-nav__link--active']} aria-current={isActive ? 'page' : undefined}>
+            {label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="future-header__actions">
+      <a href="/contact" class="future-button future-button--solid">Book consult</a>
+      <button
+        id="future-menu-toggle"
+        class="future-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="future-mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="future-mobile-menu" class="future-mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="future-shell future-mobile-menu__inner">
+      <nav class="future-mobile-nav" aria-label="Mobile navigation">
+        {navLinks.map(({ href, label }) => {
+          const isActive = href === '/'
+            ? currentPath === '/'
+            : currentPath === href || currentPath.startsWith(`${href}/`);
+
+          return (
+            <a href={href} class:list={['future-mobile-nav__link', isActive && 'future-mobile-nav__link--active']}>
+              {label}
+            </a>
+          );
+        })}
+      </nav>
+      <div class="future-mobile-menu__meta">
+        <a href="tel:9899473055">9899473055</a>
+        <a href="mailto:designsenseoffice@gmail.com">designsenseoffice@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const futureToggle = document.getElementById('future-menu-toggle');
+  const futureMenu = document.getElementById('future-mobile-menu');
+
+  const closeFutureMenu = () => {
+    futureMenu?.classList.remove('open');
+    futureToggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  futureToggle?.addEventListener('click', () => {
+    const isOpen = futureMenu?.classList.contains('open');
+
+    if (isOpen) {
+      closeFutureMenu();
+      return;
+    }
+
+    futureMenu?.classList.add('open');
+    futureToggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  });
+
+  futureMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeFutureMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeFutureMenu();
+    }
+  });
+</script>

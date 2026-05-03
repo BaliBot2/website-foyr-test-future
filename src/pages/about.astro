@@ -1,23 +1,172 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/home/Navbar.astro';
-import Founder from '../components/about/AboutHero.astro';
-import Story from '../components/about/PhilosophyHistory.astro';
-import Achievements from '../components/about/TeamSection.astro';
-import Credentials from '../components/about/Credentials.astro';
-import Footer from '../components/shared/Footer.astro';
+import FutureHeader from '../components/shared/FutureHeader.astro';
+import FutureFooter from '../components/shared/FutureFooter.astro';
+import { testimonials } from '../data/testimonials';
+
+const stats = [
+  { label: 'Projects delivered', value: '150+' },
+  { label: 'Years of experience', value: '8+' },
+  { label: 'Education', value: 'B.Arch / IP University' },
+  { label: 'Studio base', value: 'Delhi NCR' },
+];
+
+const values = [
+  {
+    code: '01',
+    title: 'Client-first clarity',
+    description: 'Every project starts by removing ambiguity around budget, intent, and daily use.',
+  },
+  {
+    code: '02',
+    title: 'Execution-aware design',
+    description: 'The studio translates ideas into decisions that vendors, contractors, and site teams can actually build.',
+  },
+  {
+    code: '03',
+    title: 'Measured visual ambition',
+    description: 'The work is expressive, but never at the cost of maintenance, comfort, or project control.',
+  },
+];
+
+const credentials = ['BNI member', 'Vastu-compliant planning', 'Site supervision', '3D visualization', 'Budget management'];
+const featuredTestimonials = testimonials.slice(0, 3);
 ---
 
 <Layout
-  title="About | Design Sense — Ar. Anchal Garg, Architecture Consultancy Delhi NCR"
-  description="Learn about Design Sense, founded by Ar. Anchal Garg (IP University Delhi). 150+ projects, 8+ years, BNI Member. Architecture & Interior Design in Delhi & NCR."
+  title="About | Design Sense - Ar. Anchal Garg, Architecture Consultancy Delhi NCR"
+  description="Learn about Design Sense, founded by Ar. Anchal Garg. 150+ projects, 8+ years, BNI member, architecture and interior design in Delhi NCR."
+  themeColor="#00E5FF"
+  bodyClass="future-body"
 >
-  <Navbar />
-  <main>
-    <Founder />
-    <Story />
-    <Achievements />
-    <Credentials />
+  <main class="future-page">
+    <FutureHeader />
+
+    <section class="future-page-hero">
+      <div class="future-page-hero__bg">
+        <img src="/images/about/studio-intro.jpg" alt="Design Sense studio introduction" />
+      </div>
+      <div class="future-shell future-two-col">
+        <div class="future-copy">
+          <span class="future-eyebrow">About / Founder / Practice</span>
+          <h1 class="future-title future-page-title">Design Sense is built on usable design, not decorative noise.</h1>
+          <p class="future-lede">
+            Founded by Ar. Anchal Garg, the studio operates across architecture, interiors, and visualization with a practical
+            bias toward clarity, coordination, and long-term livability.
+          </p>
+        </div>
+
+        <article class="future-card future-founder-card">
+          <img src="/images/about/anchal-garg-portrait.jpg" alt="Ar. Anchal Garg portrait" />
+          <div>
+            <p class="future-founder-card__name">Ar. Anchal Garg</p>
+            <p class="future-founder-card__role future-microcopy">Founder / Architect / Interior Designer</p>
+            <p class="future-form-note">
+              Over 8 years of hands-on experience across homes, apartments, farmhouses, and commercial environments, with
+              a process shaped by drawing discipline and site-level problem solving.
+            </p>
+            <div class="future-tag-row">
+              <span>B.Arch</span>
+              <span>Delhi NCR</span>
+              <span>Pan India projects</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="future-section">
+      <div class="future-shell future-stats-grid">
+        {stats.map((stat) => (
+          <article class="future-stat-card">
+            <div class="future-stat-card__value">{stat.value}</div>
+            <div class="future-stat-card__label">{stat.label}</div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="future-section">
+      <div class="future-shell future-split">
+        <div>
+          <span class="future-eyebrow">Practice story</span>
+          <h2 class="future-section-title">The studio grew by making complex decisions feel manageable.</h2>
+        </div>
+        <div class="future-copy">
+          <p>
+            Design Sense approaches each commission with the same conviction: the best design work should reduce friction,
+            not create more of it. That means balancing aesthetics with project logic, coordinating details early, and
+            keeping decisions legible for both clients and execution teams.
+          </p>
+          <p>
+            Over 150 projects have been delivered across residential, commercial, apartment, duplex, and farmhouse
+            categories. The studio’s strength is not a single fixed style, but a repeatable method for adapting to
+            different clients while protecting quality.
+          </p>
+          <div class="future-chip-row">
+            {credentials.map((credential) => <span class="future-chip">{credential}</span>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="future-section">
+      <div class="future-shell">
+        <span class="future-eyebrow">Values</span>
+        <h2 class="future-section-title future-section-title--wide">What the studio protects on every project.</h2>
+        <div class="future-card-grid">
+          {values.map((value) => (
+            <article class="future-card">
+              <div class="future-card__code">{value.code}</div>
+              <h3 class="future-card-title">{value.title}</h3>
+              <p>{value.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="future-section future-section--bordered">
+      <div class="future-shell">
+        <span class="future-eyebrow">Recognition</span>
+        <div class="future-two-col">
+          <article class="future-card future-image-frame">
+            <img src="/images/about/achievements.jpg" alt="Design Sense achievements and recognitions" />
+          </article>
+          <div class="future-copy">
+            <h2 class="future-section-title">Credibility built through delivered work and client trust.</h2>
+            <p>
+              Recognition matters less as decoration and more as proof that the studio can sustain quality over time. That
+              includes repeat recommendations, strong review signals, and the ability to operate across different scales
+              without losing rigor.
+            </p>
+            <div class="future-review-grid">
+              {featuredTestimonials.map((item) => (
+                <article class="future-review-card">
+                  <div class="future-review-card__stars">*****</div>
+                  <p>{item.quote}</p>
+                  <strong>{item.reviewer}</strong>
+                  <span class="future-microcopy">{item.badge ?? item.source}</span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="future-cta">
+      <div class="future-shell">
+        <span class="future-eyebrow">Next step</span>
+        <h2>Explore the studio’s capabilities in detail.</h2>
+        <p>Move from the practice story into architecture, interiors, visualization, and the project delivery workflow.</p>
+        <div class="future-actions">
+          <a href="/services" class="future-button future-button--solid">View services</a>
+          <a href="/contact" class="future-button future-button--ghost">Start a conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <FutureFooter />
   </main>
-  <Footer />
 </Layout>

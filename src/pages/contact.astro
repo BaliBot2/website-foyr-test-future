@@ -1,55 +1,165 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/home/Navbar.astro';
-import Footer from '../components/shared/Footer.astro';
-import ContactForm from '../components/contact/ContactForm.astro';
-import ContactDetails from '../components/contact/ContactInfo.astro';
-import ServiceArea from '../components/contact/ContactMap.astro';
+import FutureHeader from '../components/shared/FutureHeader.astro';
+import FutureFooter from '../components/shared/FutureFooter.astro';
+
+const contactCards = [
+  {
+    label: 'Phone',
+    value: '9899473055',
+    href: 'tel:9899473055',
+  },
+  {
+    label: 'Email',
+    value: 'designsenseoffice@gmail.com',
+    href: 'mailto:designsenseoffice@gmail.com',
+  },
+  {
+    label: 'Instagram',
+    value: '@designsense.architects',
+    href: 'https://www.instagram.com/designsense.architects',
+  },
+  {
+    label: 'Coverage',
+    value: 'Delhi NCR / select Pan India projects',
+  },
+];
 ---
 
 <Layout
-  title="Contact | Design Sense — Free Consultation, Architecture & Interior Design Delhi NCR"
+  title="Contact | Design Sense - Free Consultation, Architecture & Interior Design Delhi NCR"
   description="Contact Design Sense for a free architecture and interior design consultation. Phone: 9899473055. Email: designsenseoffice@gmail.com. Serving Delhi & NCR."
+  themeColor="#00E5FF"
+  bodyClass="future-body"
 >
-  <Navbar />
-  <main>
-    <!-- Page header -->
-    <section class="pt-32 pb-12" style="background-color: var(--color-primary);">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="h-px w-12" style="background-color: color-mix(in srgb, var(--color-primary-contrast) 40%, transparent);" />
-          <span class="text-xs font-bold uppercase tracking-[0.3em] font-display" style="color: color-mix(in srgb, var(--color-primary-contrast) 60%, transparent);">Get in Touch</span>
+  <main class="future-page">
+    <FutureHeader />
+
+    <section class="future-page-hero future-page-hero--compact">
+      <div class="future-page-hero__bg">
+        <img src="/images/hero/cta-bg.jpg" alt="Design Sense contact hero" />
+      </div>
+      <div class="future-shell future-two-col">
+        <div class="future-copy">
+          <span class="future-eyebrow">Contact / Consultation / Brief</span>
+          <h1 class="future-title future-page-title">Bring the brief, the questions, and the constraints.</h1>
+          <p class="future-lede">
+            Book a free consultation with Design Sense and begin with the information that actually matters: site, size,
+            budget range, priorities, and timeline.
+          </p>
         </div>
-        <h1
-          class="font-display font-black uppercase leading-tight"
-          style="color: var(--color-primary-contrast); font-size: clamp(2.5rem, 7vw, 5rem);"
-        >
-          Let's Build<br />Your Vision
-        </h1>
-        <p class="font-sans text-lg mt-4 max-w-xl" style="color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent);">
-          Book a free consultation and start your design journey with Ar. Anchal Garg.
-        </p>
+
+        <aside class="future-meta-panel">
+          <div class="future-meta-panel__label">Contact details</div>
+          <div class="future-meta-panel__item">
+            <strong>Response window</strong>
+            <span>Usually within 24 hours</span>
+          </div>
+          <div class="future-meta-panel__item">
+            <strong>Primary region</strong>
+            <span>Delhi NCR</span>
+          </div>
+          <div class="future-meta-panel__item">
+            <strong>Consult format</strong>
+            <span>Call / WhatsApp / brief submission</span>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <!-- Form + Details -->
-    <section class="py-20 bg-background-light dark:bg-background-dark">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <section class="future-section">
+      <div class="future-shell future-form-grid">
+        <article class="future-form">
+          <h2 class="future-form-title">Start the conversation</h2>
+          <p class="future-form-note">Share the core project inputs and the studio can respond with the right next step.</p>
 
-          <!-- Left: Form -->
-          <div class="lg:col-span-7">
-            <ContactForm />
-          </div>
+          <form class="future-form-fields" action="#" method="post">
+            <div class="future-form-row">
+              <label>
+                Full name
+                <input type="text" name="name" placeholder="e.g. Rahul Sharma" />
+              </label>
+              <label>
+                Phone number
+                <input type="tel" name="phone" placeholder="e.g. 9876543210" />
+              </label>
+            </div>
 
-          <!-- Right: Details + Map -->
-          <div class="lg:col-span-5 space-y-10">
-            <ContactDetails />
-            <ServiceArea />
-          </div>
+            <label>
+              Email address
+              <input type="email" name="email" placeholder="you@example.com" />
+            </label>
+
+            <label>
+              Project type
+              <select name="projectType">
+                <option value="">Select project type</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+                <option value="farmhouse">Farmhouse</option>
+                <option value="apartment">Apartment</option>
+                <option value="duplex">Duplex</option>
+                <option value="other">Other / Not sure</option>
+              </select>
+            </label>
+
+            <label>
+              Project brief
+              <textarea
+                name="message"
+                placeholder="Share location, approximate size, budget range, timeline, and any specific design priorities."
+              ></textarea>
+            </label>
+
+            <div class="future-actions">
+              <button type="submit" class="future-button future-button--solid">Request consultation</button>
+            </div>
+            <p class="future-form-note">This form is for initial inquiry. You can also call or WhatsApp directly.</p>
+          </form>
+        </article>
+
+        <div class="future-data-grid">
+          {contactCards.map((item) => (
+            <article class="future-data-card">
+              <div class="future-data-card__label">{item.label}</div>
+              {item.href ? (
+                <a class="future-data-card__value future-data-card__value--body" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer' : undefined}>
+                  {item.value}
+                </a>
+              ) : (
+                <div class="future-data-card__value future-data-card__value--body">{item.value}</div>
+              )}
+            </article>
+          ))}
+
+          <article class="future-data-card">
+            <div class="future-data-card__label">Service area</div>
+            <div class="future-data-card__value future-data-card__value--body">
+              <iframe
+                class="future-map"
+                title="Design Sense service area map"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448181.1637424683!2d76.81306354673641!3d28.647279935105156!2m3!1f0!2f0!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              ></iframe>
+            </div>
+          </article>
         </div>
       </div>
     </section>
+
+    <section class="future-cta">
+      <div class="future-shell">
+        <span class="future-eyebrow">Direct path</span>
+        <h2>If the brief is urgent, use the fastest channel.</h2>
+        <p>Call or WhatsApp the studio directly to align on project type, location, and first consultation timing.</p>
+        <div class="future-actions">
+          <a href="tel:9899473055" class="future-button future-button--solid">Call now</a>
+          <a href="https://wa.me/919899473055" class="future-button future-button--ghost">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <FutureFooter />
   </main>
-  <Footer />
 </Layout>

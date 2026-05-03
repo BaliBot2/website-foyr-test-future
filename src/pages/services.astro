@@ -1,23 +1,156 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/home/Navbar.astro';
-import Architecture from '../components/services/Architecture.astro';
-import Interiors from '../components/services/Interiors.astro';
-import Visualization3D from '../components/services/Visualization3D.astro';
-import ProcessFlow from '../components/services/ProcessFlow.astro';
-import Footer from '../components/shared/Footer.astro';
+import FutureHeader from '../components/shared/FutureHeader.astro';
+import FutureFooter from '../components/shared/FutureFooter.astro';
+
+const services = [
+  {
+    code: 'ARC',
+    name: 'Architecture',
+    description: 'Complete architectural design packages from site analysis to structural execution guidance.',
+    items: ['Vastu-compliant layouts', '2D and 3D drawing sets', 'Facade design and floor planning', 'Execution-ready documentation'],
+  },
+  {
+    code: 'INT',
+    name: 'Interiors',
+    description: 'Interior systems for residential and commercial spaces, tailored to use, finish, and budget priorities.',
+    items: ['Spatial planning', 'Material and lighting palettes', 'Custom furniture detailing', 'Vendor coordination'],
+  },
+  {
+    code: 'VIS',
+    name: '3D Visualization',
+    description: 'Photorealistic renders that make future decisions legible before procurement or site execution begins.',
+    items: ['Rendered views', 'Presentation imagery', 'Design review support', 'Decision alignment with clients'],
+  },
+];
+
+const processSteps = [
+  'Understand needs, site conditions, and budget constraints',
+  'Build the space plan and circulation logic',
+  'Develop the design language and material strategy',
+  'Resolve details through 3D views and drawing packages',
+  'Coordinate procurement, site teams, and vendor inputs',
+  'Carry execution to handover and final styling',
+];
+
+const deliverables = [
+  {
+    title: 'What clients receive',
+    items: ['Layouts and planning studies', 'Drawings for execution', 'Material direction', 'Furniture and lighting guidance'],
+  },
+  {
+    title: 'What the process avoids',
+    items: ['Unclear scope', 'Late-stage visual confusion', 'Uncontrolled aesthetic drift', 'Avoidable site rework'],
+  },
+];
 ---
 
 <Layout
-  title="Services | Design Sense — Architecture, Interior Design & 3D Visualization in Delhi NCR"
+  title="Services | Design Sense - Architecture, Interior Design & 3D Visualization in Delhi NCR"
   description="Design Sense offers complete architecture drawings, interior design, and photorealistic 3D visualization services in Delhi & NCR. All Vastu-compliant. By Ar. Anchal Garg."
+  themeColor="#00E5FF"
+  bodyClass="future-body"
 >
-  <Navbar />
-  <main>
-    <Architecture />
-    <Interiors />
-    <Visualization3D />
-    <ProcessFlow />
+  <main class="future-page">
+    <FutureHeader />
+
+    <section class="future-page-hero">
+      <div class="future-page-hero__bg">
+        <img src="/images/hero/services-diagram.jpg" alt="Design Sense services overview" />
+      </div>
+      <div class="future-shell future-two-col">
+        <div class="future-copy">
+          <span class="future-eyebrow">Services / Delivery / Visualization</span>
+          <h1 class="future-title future-page-title">The studio works across design, detail, and execution.</h1>
+          <p class="future-lede">
+            Design Sense combines architecture, interiors, and 3D visualization into one delivery path so decisions stay
+            coherent from first brief to final handover.
+          </p>
+        </div>
+
+        <aside class="future-meta-panel">
+          <div class="future-meta-panel__label">Service overview</div>
+          <div class="future-meta-panel__item">
+            <strong>Core modules</strong>
+            <span>Architecture / Interiors / 3D Viz</span>
+          </div>
+          <div class="future-meta-panel__item">
+            <strong>Project logic</strong>
+            <span>Clarity before execution</span>
+          </div>
+          <div class="future-meta-panel__item">
+            <strong>Service area</strong>
+            <span>Delhi NCR / Pan India</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="future-section">
+      <div class="future-shell">
+        <span class="future-eyebrow">Capabilities</span>
+        <h2 class="future-section-title future-section-title--wide">Complete design services from concept to execution.</h2>
+        <div class="future-card-grid">
+          {services.map((service) => (
+            <article class="future-card">
+              <div class="future-card__code">{service.code}</div>
+              <h3 class="future-card-title">{service.name}</h3>
+              <p>{service.description}</p>
+              <ul>
+                {service.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="future-section future-section--bordered">
+      <div class="future-shell future-split">
+        <div>
+          <span class="future-eyebrow">Process</span>
+          <h2 class="future-section-title">How Design Sense keeps work moving without losing design control.</h2>
+        </div>
+        <div class="future-process-list">
+          {processSteps.map((step, index) => (
+            <div class:list={['future-step', index === 0 && 'future-step--active']}>
+              <span class="future-step__num">step_{String(index + 1).padStart(2, '0')}</span>
+              <span class="future-step__title">{step}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="future-section">
+      <div class="future-shell">
+        <span class="future-eyebrow">Outputs</span>
+        <h2 class="future-section-title future-section-title--wide">What the engagement produces for clients and site teams.</h2>
+        <div class="future-list-grid">
+          {deliverables.map((block) => (
+            <article class="future-list-card">
+              <h3>{block.title}</h3>
+              <ul>
+                {block.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="future-cta">
+      <div class="future-shell">
+        <span class="future-eyebrow">Portfolio</span>
+        <h2>See how those services resolve in delivered spaces.</h2>
+        <p>Move from service structure into live residential, commercial, apartment, duplex, and farmhouse project examples.</p>
+        <div class="future-actions">
+          <a href="/projects" class="future-button future-button--solid">Open projects</a>
+          <a href="/contact" class="future-button future-button--ghost">Book consult</a>
+        </div>
+      </div>
+    </section>
+
+    <FutureFooter />
   </main>
-  <Footer />
 </Layout>
